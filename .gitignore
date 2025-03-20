@@ -12,6 +12,9 @@
 /build
 
 # misc
+.env
+/.env
+.env/
 .DS_Store
 .env.local
 .env.development.local
@@ -21,3 +24,33 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# Node modules
+node_modules/
+
+# Log files
+*.log
+*.txt
+
+# Environment files
+.env
+.env.local
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Development tools
+.nodemon.json
+debug.log
+.vscode/
+.idea/
+
+# Test files
+coverage/
+*.test.js
+
+# Build files
+dist/
+build/

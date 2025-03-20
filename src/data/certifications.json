@@ -1,0 +1,33 @@
+
+[
+  {
+    "title": "Career Essentials in GitHub",
+    "issuer": "GitHub",
+    "date": "2025",
+    "url": "https://github.com/certifications/career-essentials"
+  },
+  {
+    "title": "ISC2 CyberSecurity Certification",
+    "issuer": "ISC2",
+    "date": "2025",
+    "url": "https://isc2.org/certifications/cybersecurity"
+  },
+  {
+    "title": "AWS Course",
+    "issuer": "Amazon Web Services",
+    "date": "2024",
+    "url": "https://aws.amazon.com/certification"
+  },
+  {
+    "title": "Introduction to DevOps",
+    "issuer": "Great Learning",
+    "date": "2024",
+    "url": "https://greatlearning.in/devops"
+  },
+  {
+    "title": "Cloud Computing",
+    "issuer": "Great Learning",
+    "date": "2024",
+    "url": "https://greatlearning.in/cloud-computing"
+  }
+]

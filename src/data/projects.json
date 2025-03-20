@@ -1,0 +1,22 @@
+[
+  {
+    "title": "MERN Stack Application",
+    "description": "A full-stack web app with user authentication and API integration.",
+    "tech": ["MERN", "GitHub", "Docker"],
+    "link": "https://github.com/sureshbarach2001/e-commerce_Website.git",
+    "image": "/assets/images/mern-project.png"
+  },{
+    "title": "Next.js NIVOX Blog Application",
+    "description": "🌌NIVOX is a cutting-edge, full-stack personal blog platform crafted with the MERN Stack (MongoDB, Express.js, React via Next.js, Node.js)",
+    "tech": ["Next.js", "Tailwind CSS", "Custom Animations", "Redis", "MongoDB", "Express.js", "Node.js", "Git & GitHub", "JWT"],
+    "link": "https://github.com/sureshbarach2001/NIVOX-Personal-Blog-Platform.git",
+    "image": "/assets/images/next-project.png"
+  },
+  {
+    "title": "DevOps CI/CD Pipeline",
+    "description": "Automated deployment pipeline using Jenkins and AWS.",
+    "tech": ["Jenkins", "AWS", "Docker"],
+    "link": "https://github.com/sureshbarach2001/Devops-Project.git",
+    "image": "/assets/images/devops-project.png"
+  }
+]

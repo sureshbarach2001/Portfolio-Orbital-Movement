@@ -1,0 +1,929 @@
+/* /new-portfolio/src/styles/tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Particle Animation (used in Hero, About, Skills, Projects, etc.) */
+.particle-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at center,
+    rgba(45, 212, 191, 0.1),
+    transparent 70%
+  );
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #a5b4fc;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: move 20s infinite linear;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(50vw, 50vh);
+    opacity: 0.5;
+  }
+}
+
+/* Skill Galaxy Styles (used in Skills) */
+.galaxy-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.planet {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.moon {
+  position: absolute;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+.paused-orbit {
+  animation-play-state: paused;
+}
+
+.glowing-planet {
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.7), 0 0 40px rgba(45, 212, 191, 0.4);
+}
+
+.glowing-moon {
+  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7),
+    0 0 30px rgba(103, 232, 249, 0.4);
+  position: relative;
+}
+
+.glowing-label {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5);
+}
+
+.glowing-ring {
+  filter: drop-shadow(0 0 5px rgba(103, 232, 249, 0.7));
+}
+
+/* Starry Background */
+.particle-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>')
+    repeat;
+  opacity: 0.2;
+}
+
+/* Project Card Styles (used in Projects) */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.project-card:hover {
+  box-shadow: 0 0 15px rgba(11, 44, 40, 0.3);
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.glowing-card {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+}
+
+.pulsing-button {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(45, 212, 191, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+  }
+}
+
+/* Follower and Repo Styles (used in follower.html and index.html) */
+.repo-item,
+.follower-item {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Timeline Styles (used in Experience) */
+.timeline-line {
+  background: linear-gradient(to bottom, #67e8f9, #2dd4bf);
+  box-shadow: 0 0 10px rgba(103, 232, 249, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
+}
+
+.pulsing-line {
+  animation: pulse-line 3s infinite ease-in-out;
+}
+
+@keyframes pulse-line {
+  0% {
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(103, 232, 249, 0.8), 0 0 30px rgba(45, 212, 191, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
+  }
+}
+
+.glowing-dot {
+  background-color: #67e8f9;
+  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7), 0 0 30px rgba(103, 232, 249, 0.4);
+  border-color: #1e3a8a;
+}
+
+.glowing-line {
+  background: linear-gradient(to right, #67e8f9, #2dd4bf);
+  box-shadow: 0 0 10px rgba(103, 232, 249, 0.7), 0 0 15px rgba(45, 212, 191, 0.4);
+}
+
+/* Glowing text effect for headers */
+.glowing-text {
+  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
+}
+
+/* Glowing card effect for experience cards */
+.glowing-card {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+}
+
+/* Gradient border for experience cards (dark mode) */
+.gradient-border {
+  position: relative;
+  border: none !important;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #215a52, #09367d);
+  z-index: -1;
+  border-radius: 12px;
+}
+
+/* Holographic effect on hover for experience cards */
+.glowing-card:hover {
+  background: linear-gradient(45deg, rgba(45, 212, 191, 0.1), rgba(103, 232, 249, 0.1));
+  backdrop-filter: blur(-200px);
+}
+
+/* Glowing text effect for headers */
+.glowing-text {
+  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
+}
+
+/* Gradient border for project cards (dark mode) */
+.gradient-border {
+  position: relative;
+  border: none !important;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #215a52, #09367d);
+  z-index: -1;
+  border-radius: 12px;
+}
+
+/* Gradient border for project cards (light mode) */
+.gradient-border-light {
+  position: relative;
+  border: none !important;
+}
+.gradient-border-light::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #60a5fa, #34d399);
+  z-index: -1;
+  border-radius: 12px;
+}
+
+/* Additional info for project cards */
+.additional-info {
+  overflow: hidden;
+}
+
+/* Ensure particles don't interfere with content */
+#tsparticles-profile,
+#tsparticles-projects,
+#tsparticles-certifications {
+  pointer-events: none;
+}
+#tsparticles-profile canvas,
+#tsparticles-projects canvas,
+#tsparticles-certifications canvas {
+  pointer-events: auto;
+}
+
+/* Ensure search bar and buttons are interactable */
+input[type="text"],
+button {
+  pointer-events: auto !important;
+}
+
+/* Improve text readability on project cards */
+.project-card {
+  position: relative;
+  z-index: 10;
+}
+.project-card h3,
+.project-card p,
+.project-card a {
+  position: relative;
+  z-index: 11;
+}
+
+/* Ensure react-select dropdowns are above project cards */
+.react-select__menu {
+  z-index: 20 !important;
+}
+
+/* Certification Card Styles */
+.certification-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.certification-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* Improve text readability on certification cards */
+.certification-card h3,
+.certification-card p {
+  position: relative;
+  z-index: 2;
+}
+
+.certification-card:hover {
+  box-shadow: 0 0 15px rgba(11, 44, 40, 0.3);
+} /* Particle Animation (used in Hero, About, Skills, Projects, etc.) */
+.particle-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at center,
+    rgba(45, 212, 191, 0.1),
+    transparent 70%
+  );
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #a5b4fc;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: move 20s infinite linear;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(50vw, 50vh);
+    opacity: 0.5;
+  }
+}
+
+/* Skill Galaxy Styles (used in Skills) */
+.galaxy-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible !important; /* Ensure tooltips aren’t clipped */
+}
+
+.planet {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.planet,
+.moon {
+  overflow: visible !important;
+  z-index: 10 !important;
+}
+
+.moon {
+  position: absolute;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+.paused-orbit {
+  animation-play-state: paused;
+}
+
+.glowing-planet {
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.7), 0 0 40px rgba(45, 212, 191, 0.4);
+}
+
+.glowing-moon {
+  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7),
+    0 0 30px rgba(103, 232, 249, 0.4);
+  position: relative;
+}
+
+.glowing-label {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5);
+}
+
+.glowing-ring {
+  filter: drop-shadow(0 0 5px rgba(103, 232, 249, 0.7));
+}
+
+/* Starry Background */
+.particle-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>')
+    repeat;
+  opacity: 0.2;
+}
+
+/* Project Card Styles (used in Projects) */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.project-card:hover {
+  box-shadow: 0 0 15px rgba(11, 44, 40, 0.3);
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.glowing-card {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+}
+
+.pulsing-button {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(45, 212, 191, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+  }
+}
+
+/* Follower and Repo Styles (used in follower.html and index.html) */
+.repo-item,
+.follower-item {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Timeline Styles (used in Experience) */
+.timeline-line {
+  background: linear-gradient(to bottom, #67e8f9, #2dd4bf);
+  box-shadow: 0 0 10px rgba(103, 232, 249, 0.5),
+    0 0 20px rgba(45, 212, 191, 0.3);
+}
+
+.glowing-dot {
+  background-color: #67e8f9;
+  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7),
+    0 0 30px rgba(103, 232, 249, 0.4);
+  border-color: #1e3a8a;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Glowing text effect for headers */
+.glowing-text {
+  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
+}
+
+/* Gradient border for project cards (dark mode) */
+.gradient-border {
+  position: relative;
+  border: none !important;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #215a52, #09367d);
+  z-index: -1;
+  border-radius: 12px;
+}
+
+/* Gradient border for project cards (light mode) */
+.gradient-border-light {
+  position: relative;
+  border: none !important;
+}
+.gradient-border-light::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #60a5fa, #34d399);
+  z-index: -1;
+  border-radius: 12px;
+}
+
+/* Additional info for project cards */
+.additional-info {
+  overflow: hidden;
+}
+
+/* Ensure particles don't interfere with content */
+#tsparticles-profile,
+#tsparticles-projects,
+#tsparticles-certifications {
+  pointer-events: none;
+}
+#tsparticles-profile canvas,
+#tsparticles-projects canvas,
+#tsparticles-certifications canvas {
+  pointer-events: auto;
+}
+
+/* Ensure search bar and buttons are interactable */
+input[type="text"],
+button {
+  pointer-events: auto !important;
+}
+
+/* Improve text readability on project cards */
+.project-card {
+  position: relative;
+  z-index: 5;
+}
+.project-card h3,
+.project-card p,
+.project-card a {
+  position: relative;
+  z-index: 11;
+}
+
+/* Ensure react-select dropdowns are above project cards */
+.react-select__menu {
+  z-index: 20 !important;
+}
+
+/* Certification Card Styles */
+.certification-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.certification-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* Improve text readability on certification cards */
+.certification-card h3,
+.certification-card p {
+  position: relative;
+  z-index: 2;
+}
+
+.certification-card:hover {
+  box-shadow: 0 0 15px rgba(11, 44, 40, 0.3);
+}
+
+
+/* Particle Animation (used in Contact) */
+.particle-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(45, 212, 191, 0.1), transparent 70%);
+  pointer-events: none; /* Prevent interference with hover events */
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #A5B4FC;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: move 20s infinite linear;
+  pointer-events: none; /* Prevent particles from blocking hover events */
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(50vw, 50vh);
+    opacity: 0.5;
+  }
+}
+
+/* Starry Background for Particle Background */
+.particle-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>') repeat;
+  opacity: 0.2;
+}
+
+/* Glowing text effect for headers */
+.glowing-text {
+  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
+}
+
+/* Glowing card effect for the form */
+.glowing-card {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+}
+
+/* Gradient border for the form (dark mode) */
+.gradient-border {
+  position: relative;
+  border: none !important;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #215a52, #09367d);
+  z-index: -1;
+  border-radius: 14px; /* Slightly larger to match the form's rounded-xl */
+}
+
+/* Glowing label effect */
+.glowing-label {
+  text-shadow: 0 0 5px rgba(45, 212, 191, 0.5);
+}
+
+/* Glowing input effect */
+.glowing-input {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(45, 212, 191, 0.3);
+}
+
+.glowing-input:focus {
+  box-shadow: 0 0 10px rgba(103, 232, 249, 0.7);
+}
+
+/* Pulsing button effect */
+.pulsing-button {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(45, 212, 191, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+  }
+}
+
+/* Nebula Background (used in Footer) */
+.nebula-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(45, 212, 191, 0.2) 0%,
+    rgba(103, 232, 249, 0.1) 30%,
+    transparent 70%
+  );
+  filter: blur(50px);
+  opacity: 0.5;
+  animation: nebulaGlow 15s ease-in-out infinite;
+}
+
+@keyframes nebulaGlow {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+/* Particle Animation (used in Footer) */
+.particle-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none; /* Prevent interference with hover events */
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #A5B4FC;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: move 20s infinite linear;
+  pointer-events: none; /* Prevent particles from blocking hover events */
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(50vw, 50vh);
+    opacity: 0.5;
+  }
+}
+
+/* Starry Background for Particle Background */
+.particle-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>') repeat;
+  opacity: 0.2;
+}
+
+/* Glowing text effect for copyright text and tagline */
+.glowing-text {
+  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
+}
+
+.glowing-tagline {
+  text-shadow: 0 0 8px rgba(45, 212, 191, 0.5), 0 0 15px rgba(45, 212, 191, 0.3);
+}
+
+/* Glowing logo effect (Planet) */
+.glowing-logo {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+}
+
+/* Gradient border for the logo (dark mode) */
+.gradient-border {
+  position: relative;
+  border: none !important;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #215a52, #09367d);
+  z-index: -1;
+}
+
+/* Glowing orbit path for social media icons */
+.glowing-orbit-path {
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.3), 0 0 20px rgba(45, 212, 191, 0.2);
+  animation: orbitPulse 4s ease-in-out infinite;
+}
+
+@keyframes orbitPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(45, 212, 191, 0.3), 0 0 20px rgba(45, 212, 191, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 30px rgba(45, 212, 191, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(45, 212, 191, 0.3), 0 0 20px rgba(45, 212, 191, 0.2);
+  }
+}
+
+/* Glowing icon effect for social media icons (Moons) */
+.glowing-moon {
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
+}
+
+/* Glow trail effect for social media icons on hover */
+.glow-trail {
+  position: relative;
+}
+
+.glow-trail::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(45, 212, 191, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.glow-trail:hover::after {
+  width: 40px;
+  height: 40px;
+  background: rgba(45, 212, 191, 0.3);
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.7);
+}
+
+/* Holographic card effect for tooltips */
+.holographic-card {
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+}
+
+/* Orbital animation for moons (social media icons) */
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(90px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(90px) rotate(-360deg);
+  }
+}
+
+/* Pause orbit animation on hover */
+.paused-orbit {
+  animation-play-state: paused;
+}

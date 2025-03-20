@@ -1,0 +1,45 @@
+[
+  {
+    "title": "Software Development Intern",
+    "company": "TechnoHacks Solutions Pvt. Ltd.",
+    "description": [
+      "Worked on MERN stack and API development for real-world projects.",
+      "Collaborated on software architecture, debugging, and deployment."
+    ],
+    "duration": "2024"
+  },
+  {
+    "title": "DevOps Intern",
+    "company": "YoungDev Interns",
+    "description": [
+      "Implemented CI/CD pipelines and optimized deployment processes.",
+      "Gained expertise in system automation and infrastructure management."
+    ],
+    "duration": "2024"
+  },
+  {
+    "title": "Software Development Intern",
+    "company": "CodeAlpha",
+    "description": [
+      "Developed full-stack applications using React.js, Node.js, and MongoDB."
+    ],
+    "duration": "May 2024 - Nov 2024"
+  },
+  {
+    "title": "Private Tutor",
+    "company": "Self Employed",
+    "description": [
+      "Taught web development (HTML, CSS, JavaScript, React.js) and supported academic success."
+    ],
+    "duration": "May 2023 - Present"
+  },
+  {
+    "title": "DevOps Intern",
+    "company": "TechnoHacks Solutions Pvt. Ltd.",
+    "description": [
+      "Worked alongside professionals to implement DevOps practices.",
+      "Developed experience in CI/CD pipelines and infrastructure management."
+    ],
+    "duration": "March 2025 - Present"
+  }
+]

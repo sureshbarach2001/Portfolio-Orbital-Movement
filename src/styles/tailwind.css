@@ -3,7 +3,25 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Particle Animation (used in Hero, About, Skills, Projects, etc.) */
+/* Base styles for light and dark themes */
+html {
+  @apply transition-colors duration-500 scroll-smooth;
+}
+
+body {
+  @apply bg-[#2A2A5A] text-white; /* Light mode now uses dark blue base */
+}
+
+body.dark {
+  @apply bg-[#BCE0E8] text-black; /* Dark mode now uses light teal base */
+}
+
+/* Section styling for seamless merging */
+.section {
+  @apply relative w-full transition-colors duration-500;
+}
+
+/* Particle Animation */
 .particle-background {
   position: absolute;
   top: 0;
@@ -43,348 +61,12 @@
   }
 }
 
-/* Skill Galaxy Styles (used in Skills) */
+/* Skill Galaxy Styles */
 .galaxy-container {
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-.planet {
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-.moon {
-  position: absolute;
-}
-
-@keyframes orbit {
-  0% {
-    transform: rotate(0deg) translateX(100px) rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg) translateX(100px) rotate(-360deg);
-  }
-}
-
-.paused-orbit {
-  animation-play-state: paused;
-}
-
-.glowing-planet {
-  box-shadow: 0 0 20px rgba(45, 212, 191, 0.7), 0 0 40px rgba(45, 212, 191, 0.4);
-}
-
-.glowing-moon {
-  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7),
-    0 0 30px rgba(103, 232, 249, 0.4);
-  position: relative;
-}
-
-.glowing-label {
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5);
-}
-
-.glowing-ring {
-  filter: drop-shadow(0 0 5px rgba(103, 232, 249, 0.7));
-}
-
-/* Starry Background */
-.particle-background::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>')
-    repeat;
-  opacity: 0.2;
-}
-
-/* Project Card Styles (used in Projects) */
-.project-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(5px);
-  border-radius: 12px;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.project-card:hover {
-  box-shadow: 0 0 15px rgba(11, 44, 40, 0.3);
-}
-
-.project-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 12px;
-}
-
-.glowing-card {
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
-}
-
-.pulsing-button {
-  animation: pulse 2s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(45, 212, 191, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
-  }
-}
-
-/* Follower and Repo Styles (used in follower.html and index.html) */
-.repo-item,
-.follower-item {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-/* Timeline Styles (used in Experience) */
-.timeline-line {
-  background: linear-gradient(to bottom, #67e8f9, #2dd4bf);
-  box-shadow: 0 0 10px rgba(103, 232, 249, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
-}
-
-.pulsing-line {
-  animation: pulse-line 3s infinite ease-in-out;
-}
-
-@keyframes pulse-line {
-  0% {
-    box-shadow: 0 0 10px rgba(103, 232, 249, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(103, 232, 249, 0.8), 0 0 30px rgba(45, 212, 191, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(103, 232, 249, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
-  }
-}
-
-.glowing-dot {
-  background-color: #67e8f9;
-  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7), 0 0 30px rgba(103, 232, 249, 0.4);
-  border-color: #1e3a8a;
-}
-
-.glowing-line {
-  background: linear-gradient(to right, #67e8f9, #2dd4bf);
-  box-shadow: 0 0 10px rgba(103, 232, 249, 0.7), 0 0 15px rgba(45, 212, 191, 0.4);
-}
-
-/* Glowing text effect for headers */
-.glowing-text {
-  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
-}
-
-/* Glowing card effect for experience cards */
-.glowing-card {
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
-}
-
-/* Gradient border for experience cards (dark mode) */
-.gradient-border {
-  position: relative;
-  border: none !important;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #215a52, #09367d);
-  z-index: -1;
-  border-radius: 12px;
-}
-
-/* Holographic effect on hover for experience cards */
-.glowing-card:hover {
-  background: linear-gradient(45deg, rgba(45, 212, 191, 0.1), rgba(103, 232, 249, 0.1));
-  backdrop-filter: blur(-200px);
-}
-
-/* Glowing text effect for headers */
-.glowing-text {
-  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
-}
-
-/* Gradient border for project cards (dark mode) */
-.gradient-border {
-  position: relative;
-  border: none !important;
-}
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #215a52, #09367d);
-  z-index: -1;
-  border-radius: 12px;
-}
-
-/* Gradient border for project cards (light mode) */
-.gradient-border-light {
-  position: relative;
-  border: none !important;
-}
-.gradient-border-light::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #60a5fa, #34d399);
-  z-index: -1;
-  border-radius: 12px;
-}
-
-/* Additional info for project cards */
-.additional-info {
-  overflow: hidden;
-}
-
-/* Ensure particles don't interfere with content */
-#tsparticles-profile,
-#tsparticles-projects,
-#tsparticles-certifications {
-  pointer-events: none;
-}
-#tsparticles-profile canvas,
-#tsparticles-projects canvas,
-#tsparticles-certifications canvas {
-  pointer-events: auto;
-}
-
-/* Ensure search bar and buttons are interactable */
-input[type="text"],
-button {
-  pointer-events: auto !important;
-}
-
-/* Improve text readability on project cards */
-.project-card {
-  position: relative;
-  z-index: 10;
-}
-.project-card h3,
-.project-card p,
-.project-card a {
-  position: relative;
-  z-index: 11;
-}
-
-/* Ensure react-select dropdowns are above project cards */
-.react-select__menu {
-  z-index: 20 !important;
-}
-
-/* Certification Card Styles */
-.certification-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(5px);
-  border-radius: 12px;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.certification-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 12px;
-}
-
-/* Improve text readability on certification cards */
-.certification-card h3,
-.certification-card p {
-  position: relative;
-  z-index: 2;
-}
-
-.certification-card:hover {
-  box-shadow: 0 0 15px rgba(11, 44, 40, 0.3);
-} /* Particle Animation (used in Hero, About, Skills, Projects, etc.) */
-.particle-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-  background: radial-gradient(
-    circle at center,
-    rgba(45, 212, 191, 0.1),
-    transparent 70%
-  );
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #a5b4fc;
-  border-radius: 50%;
-  opacity: 0.5;
-  animation: move 20s infinite linear;
-}
-
-@keyframes move {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(50vw, 50vh);
-    opacity: 0.5;
-  }
-}
-
-/* Skill Galaxy Styles (used in Skills) */
-.galaxy-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: visible !important; /* Ensure tooltips aren’t clipped */
-}
-
-.planet {
-  position: absolute;
-  transform: translate(-50%, -50%);
+  overflow: visible !important;
 }
 
 .planet,
@@ -393,6 +75,11 @@ button {
   z-index: 10 !important;
 }
 
+.planet {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
 .moon {
   position: absolute;
 }
@@ -428,8 +115,8 @@ button {
   filter: drop-shadow(0 0 5px rgba(103, 232, 249, 0.7));
 }
 
-/* Starry Background */
-.particle-background::before {
+/* Starry Background for Light Mode (since it now has the dark blue background) */
+body:not(.dark) .particle-background::before {
   content: "";
   position: absolute;
   top: 0;
@@ -438,10 +125,10 @@ button {
   height: 100%;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>')
     repeat;
-  opacity: 0.2;
+  opacity: 0.5; /* Increased for galaxy effect */
 }
 
-/* Project Card Styles (used in Projects) */
+/* Project Card Styles */
 .project-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(5px);
@@ -486,220 +173,22 @@ button {
   }
 }
 
-/* Follower and Repo Styles (used in follower.html and index.html) */
-.repo-item,
-.follower-item {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-/* Timeline Styles (used in Experience) */
-.timeline-line {
-  background: linear-gradient(to bottom, #67e8f9, #2dd4bf);
-  box-shadow: 0 0 10px rgba(103, 232, 249, 0.5),
-    0 0 20px rgba(45, 212, 191, 0.3);
+.glowing-text {
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.7), 0 0 20px rgba(45, 212, 191, 0.4);
 }
 
 .glowing-dot {
-  background-color: #67e8f9;
-  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7),
-    0 0 30px rgba(103, 232, 249, 0.4);
-  border-color: #1e3a8a;
+  box-shadow: 0 0 15px rgba(103, 232, 249, 0.7), 0 0 25px rgba(103, 232, 249, 0.4);
 }
 
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.glowing-line {
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.7);
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-/* Glowing text effect for headers */
-.glowing-text {
-  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
-}
-
-/* Gradient border for project cards (dark mode) */
+/* Gradient Border for Cards */
 .gradient-border {
   position: relative;
-  border: none !important;
-}
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #215a52, #09367d);
-  z-index: -1;
-  border-radius: 12px;
-}
-
-/* Gradient border for project cards (light mode) */
-.gradient-border-light {
-  position: relative;
-  border: none !important;
-}
-.gradient-border-light::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #60a5fa, #34d399);
-  z-index: -1;
-  border-radius: 12px;
-}
-
-/* Additional info for project cards */
-.additional-info {
-  overflow: hidden;
-}
-
-/* Ensure particles don't interfere with content */
-#tsparticles-profile,
-#tsparticles-projects,
-#tsparticles-certifications {
-  pointer-events: none;
-}
-#tsparticles-profile canvas,
-#tsparticles-projects canvas,
-#tsparticles-certifications canvas {
-  pointer-events: auto;
-}
-
-/* Ensure search bar and buttons are interactable */
-input[type="text"],
-button {
-  pointer-events: auto !important;
-}
-
-/* Improve text readability on project cards */
-.project-card {
-  position: relative;
-  z-index: 5;
-}
-.project-card h3,
-.project-card p,
-.project-card a {
-  position: relative;
-  z-index: 11;
-}
-
-/* Ensure react-select dropdowns are above project cards */
-.react-select__menu {
-  z-index: 20 !important;
-}
-
-/* Certification Card Styles */
-.certification-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(5px);
-  border-radius: 12px;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.certification-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 12px;
-}
-
-/* Improve text readability on certification cards */
-.certification-card h3,
-.certification-card p {
-  position: relative;
-  z-index: 2;
-}
-
-.certification-card:hover {
-  box-shadow: 0 0 15px rgba(11, 44, 40, 0.3);
-}
-
-
-/* Particle Animation (used in Contact) */
-.particle-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-  background: radial-gradient(circle at center, rgba(45, 212, 191, 0.1), transparent 70%);
-  pointer-events: none; /* Prevent interference with hover events */
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #A5B4FC;
-  border-radius: 50%;
-  opacity: 0.5;
-  animation: move 20s infinite linear;
-  pointer-events: none; /* Prevent particles from blocking hover events */
-}
-
-@keyframes move {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(50vw, 50vh);
-    opacity: 0.5;
-  }
-}
-
-/* Starry Background for Particle Background */
-.particle-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>') repeat;
-  opacity: 0.2;
-}
-
-/* Glowing text effect for headers */
-.glowing-text {
-  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
-}
-
-/* Glowing card effect for the form */
-.glowing-card {
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
-}
-
-/* Gradient border for the form (dark mode) */
-.gradient-border {
-  position: relative;
-  border: none !important;
+  border: none;
 }
 
 .gradient-border::before {
@@ -709,221 +198,212 @@ button {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, #215a52, #09367d);
+  background: linear-gradient(45deg, #2DD4BF, #67E8F9, #A5B4FC, #2DD4BF);
+  border-radius: 12px;
   z-index: -1;
-  border-radius: 14px; /* Slightly larger to match the form's rounded-xl */
+  filter: blur(5px);
 }
 
-/* Glowing label effect */
-.glowing-label {
-  text-shadow: 0 0 5px rgba(45, 212, 191, 0.5);
+body.dark .gradient-border::before {
+  background: linear-gradient(45deg, #BCE0E8, #D1E8F0, #E6F3FA, #BCE0E8);
 }
 
-/* Glowing input effect */
-.glowing-input {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 5px rgba(45, 212, 191, 0.3);
+/* Timeline Styles for Experience Section */
+.timeline-line {
+  background: linear-gradient(to bottom, #2DD4BF, #67E8F9);
 }
 
-.glowing-input:focus {
-  box-shadow: 0 0 10px rgba(103, 232, 249, 0.7);
+body.dark .timeline-line {
+  background: linear-gradient(to bottom, #BCE0E8, #D1E8F0);
 }
 
-/* Pulsing button effect */
-.pulsing-button {
-  animation: pulse 2s infinite ease-in-out;
+.pulsing-line {
+  animation: pulse-line 3s infinite ease-in-out;
 }
 
-@keyframes pulse {
+@keyframes pulse-line {
   0% {
-    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
+    background: linear-gradient(to bottom, #2DD4BF, #67E8F9);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(45, 212, 191, 0);
+    background: linear-gradient(to bottom, #67E8F9, #A5B4FC);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+    background: linear-gradient(to bottom, #2DD4BF, #67E8F9);
   }
 }
 
-/* Nebula Background (used in Footer) */
+body.dark .pulsing-line {
+  animation: pulse-line-dark 3s infinite ease-in-out;
+}
+
+@keyframes pulse-line-dark {
+  0% {
+    background: linear-gradient(to bottom, #BCE0E8, #D1E8F0);
+  }
+  50% {
+    background: linear-gradient(to bottom, #D1E8F0, #E6F3FA);
+  }
+  100% {
+    background: linear-gradient(to bottom, #BCE0E8, #D1E8F0);
+  }
+}
+
+/* Holographic Card Effect */
+.holographic-card {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.2), rgba(103, 232, 249, 0.2));
+  border: 1px solid rgba(45, 212, 191, 0.5);
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.3);
+}
+
+body.dark .holographic-card {
+  background: linear-gradient(135deg, rgba(188, 224, 232, 0.2), rgba(209, 232, 240, 0.2));
+  border: 1px solid rgba(188, 224, 232, 0.5);
+  box-shadow: 0 0 15px rgba(188, 224, 232, 0.3);
+}
+
+/* Footer Styles */
 .nebula-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background: radial-gradient(
-    circle at 50% 50%,
+    circle at center,
     rgba(45, 212, 191, 0.2) 0%,
-    rgba(103, 232, 249, 0.1) 30%,
     transparent 70%
   );
-  filter: blur(50px);
-  opacity: 0.5;
-  animation: nebulaGlow 15s ease-in-out infinite;
 }
 
-@keyframes nebulaGlow {
-  0% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
+body.dark .nebula-background {
+  background: radial-gradient(
+    circle at center,
+    rgba(188, 224, 232, 0.2) 0%,
+    transparent 70%
+  );
 }
 
-/* Particle Animation (used in Footer) */
-.particle-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  overflow: hidden;
-  pointer-events: none; /* Prevent interference with hover events */
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #A5B4FC;
-  border-radius: 50%;
-  opacity: 0.5;
-  animation: move 20s infinite linear;
-  pointer-events: none; /* Prevent particles from blocking hover events */
-}
-
-@keyframes move {
-  0% {
-    transform: translate(0, 0);
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(50vw, 50vh);
-    opacity: 0.5;
-  }
-}
-
-/* Starry Background for Particle Background */
-.particle-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.5"/><circle cx="30" cy="80" r="1" fill="white" opacity="0.4"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.6"/></svg>') repeat;
-  opacity: 0.2;
-}
-
-/* Glowing text effect for copyright text and tagline */
-.glowing-text {
-  text-shadow: 0 0 10px rgba(16, 34, 32, 0.8), 0 0 20px rgba(45, 212, 191, 0.6);
-}
-
-.glowing-tagline {
-  text-shadow: 0 0 8px rgba(45, 212, 191, 0.5), 0 0 15px rgba(45, 212, 191, 0.3);
-}
-
-/* Glowing logo effect (Planet) */
 .glowing-logo {
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.7), 0 0 40px rgba(45, 212, 191, 0.4);
 }
 
-/* Gradient border for the logo (dark mode) */
-.gradient-border {
-  position: relative;
-  border: none !important;
+body.dark .glowing-logo {
+  box-shadow: 0 0 20px rgba(188, 224, 232, 0.7), 0 0 40px rgba(188, 224, 232, 0.4);
 }
 
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #215a52, #09367d);
-  z-index: -1;
-}
-
-/* Glowing orbit path for social media icons */
 .glowing-orbit-path {
-  box-shadow: 0 0 10px rgba(45, 212, 191, 0.3), 0 0 20px rgba(45, 212, 191, 0.2);
-  animation: orbitPulse 4s ease-in-out infinite;
+  animation: rotate-path 20s linear infinite;
 }
 
-@keyframes orbitPulse {
+@keyframes rotate-path {
   0% {
-    box-shadow: 0 0 10px rgba(45, 212, 191, 0.3), 0 0 20px rgba(45, 212, 191, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 30px rgba(45, 212, 191, 0.4);
+    transform: rotate(0deg);
   }
   100% {
-    box-shadow: 0 0 10px rgba(45, 212, 191, 0.3), 0 0 20px rgba(45, 212, 191, 0.2);
+    transform: rotate(360deg);
   }
-}
-
-/* Glowing icon effect for social media icons (Moons) */
-.glowing-moon {
-  box-shadow: 0 0 10px rgba(45, 212, 191, 0.5), 0 0 20px rgba(45, 212, 191, 0.3);
-}
-
-/* Glow trail effect for social media icons on hover */
-.glow-trail {
-  position: relative;
 }
 
 .glow-trail::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(45, 212, 191, 0.5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease;
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.5), transparent 70%);
+  opacity: 0.5;
 }
 
-.glow-trail:hover::after {
-  width: 40px;
-  height: 40px;
-  background: rgba(45, 212, 191, 0.3);
+body.dark .glow-trail::after {
+  background: radial-gradient(circle, rgba(188, 224, 232, 0.5), transparent 70%);
+}
+
+.glowing-tagline {
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+}
+
+body.dark .glowing-tagline {
+  text-shadow: 0 0 10px rgba(188, 224, 232, 0.5);
+}
+
+/* Input and Form Elements */
+.glowing-input {
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glowing-input:focus {
   box-shadow: 0 0 15px rgba(45, 212, 191, 0.7);
 }
 
-/* Holographic card effect for tooltips */
-.holographic-card {
-  box-shadow: 0 0 15px rgba(45, 212, 191, 0.5), 0 0 25px rgba(45, 212, 191, 0.3);
+body.dark .glowing-input {
+  box-shadow: 0 0 10px rgba(188, 224, 232, 0.3);
 }
 
-/* Orbital animation for moons (social media icons) */
-@keyframes orbit {
-  0% {
-    transform: rotate(0deg) translateX(90px) rotate(0deg);
+body.dark .glowing-input:focus {
+  box-shadow: 0 0 15px rgba(188, 224, 232, 0.7);
+}
+
+/* Navigation Links */
+.nav-link {
+  @apply font-roboto text-lg hover:text-teal-400 transition-colors duration-300 relative;
+}
+
+body.dark .nav-link {
+  @apply text-teal-800;
+}
+
+body:not(.dark) .nav-link {
+  @apply text-teal-200;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: #67E8F9;
+  transition: width 0.3s ease;
+}
+
+body.dark .nav-link::after {
+  background: #2DD4BF;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  @apply transition-colors duration-300;
+}
+
+body.dark .theme-toggle {
+  @apply text-teal-800 hover:text-teal-600;
+}
+
+body:not(.dark) .theme-toggle {
+  @apply text-teal-200 hover:text-teal-400;
+}
+
+/* Certification Card */
+.certification-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .galaxy-container {
+    transform: scale(0.8);
   }
-  100% {
-    transform: rotate(360deg) translateX(90px) rotate(-360deg);
+
+  .planet,
+  .moon {
+    transform-origin: center center;
   }
 }
 
-/* Pause orbit animation on hover */
-.paused-orbit {
-  animation-play-state: paused;
+@media (max-width: 640px) {
+  .galaxy-container {
+    transform: scale(0.6);
+  }
 }

@@ -11,19 +11,36 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
+
+  if (theme === 'dark') {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className={`font-roboto ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
-      <Header theme={theme} setTheme={setTheme} />
-      <Hero theme={theme} setTheme={setTheme} />
-      <About theme={theme} setTheme={setTheme} />
-      <Experience theme={theme} setTheme={setTheme} />
-      <Projects theme={theme} setTheme={setTheme} />
-      <Skills theme={theme} setTheme={setTheme} />
-      <Certifications theme={theme} setTheme={setTheme} />
-      <Contact theme={theme} setTheme={setTheme} />
-      <Footer theme={theme} setTheme={setTheme} />
+    <div className={`font-roboto transition-colors duration-500 ${
+      theme === 'dark'
+        ? 'bg-gradient-to-b from-[#0B0A2A] via-[#1E1B5E] to-[#3B2A7D]' // Deep galaxy gradient
+        : 'bg-gradient-to-b from-[#F0F9FF] via-[#E0F2FE] to-[#D6EAF8]' // Softer light gradient
+    }`}>
+      <Header theme={theme} setTheme={setTheme} scrollToSection={scrollToSection} />
+      <div id="hero" className="section"><Hero theme={theme} setTheme={setTheme} /></div>
+      <div id="about" className="section"><About theme={theme} setTheme={setTheme} /></div>
+      <div id="experience" className="section"><Experience theme={theme} setTheme={setTheme} /></div>
+      <div id="projects" className="section"><Projects theme={theme} /></div>
+      <div id="skills" className="section"><Skills theme={theme} setTheme={setTheme} /></div>
+      <div id="certifications" className="section"><Certifications theme={theme} setTheme={setTheme} /></div>
+      <div id="contact" className="section"><Contact theme={theme} setTheme={setTheme} /></div>
+      <div id="footer" className="section"><Footer theme={theme} setTheme={setTheme} /></div>
     </div>
   );
 }

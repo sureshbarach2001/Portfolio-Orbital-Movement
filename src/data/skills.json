@@ -44,7 +44,8 @@
       { "name": "PostgreSQL", "level": 85 },
       { "name": "MongoDB", "level": 80 },
       { "name": "RDBMS", "level": 80 },
-      { "name": "Database Design & Development", "level": 80 },
+      { "name": "Database Design", "level": 80 },
+      { "name": "Database Development", "level": 80 },
       { "name": "JDBC", "level": 75 }
     ]
   },
@@ -67,15 +68,16 @@
       { "name": "GitHub Copilot", "level": 80 },
       { "name": "Version Control", "level": 90 },
       { "name": "Debugging", "level": 85 },
-      { "name": "Software Implementation", "level": 80 },
-      { "name": "Engineering Documentation", "level": 80 },
-      { "name": "Web & Mobile App Development", "level": 85 }
+      { "name": "Implementation", "level": 80 },
+      { "name": "Documentation", "level": 80 },
+      { "name": "Mobile Development", "level": 85 }
     ]
   },
   {
     "name": "Security & DevOps",
     "skills": [
-      { "name": "User Authentication (JWT)", "level": 80 },
+      { "name": "User Authentication", "level": 80 },
+      { "name": "JWT", "level": 80 },
       { "name": "Security Best Practices", "level": 80 },
       { "name": "CI/CD Pipelines", "level": 70 }
     ]
@@ -83,8 +85,8 @@
   {
     "name": "Other Technical Skills",
     "skills": [
-      { "name": "Object-Oriented Programming (OOP)", "level": 85 },
-      { "name": "Software Project Management", "level": 80 },
+      { "name": "OOP", "level": 85 },
+      { "name": "Project Management", "level": 80 },
       { "name": "Operating Systems", "level": 75 },
       { "name": "WordPress", "level": 70 },
       { "name": "WordPress Design", "level": 70 }

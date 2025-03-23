@@ -5,7 +5,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import Select from "react-select";
 
-const Projects = () => {
+const Projects = ({ theme }) => {
   const [repos, setRepos] = useState([]);
   const [filteredRepos, setFilteredRepos] = useState([]);
   const [userData, setUserData] = useState(null);
@@ -16,7 +16,6 @@ const Projects = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [init, setInit] = useState(false);
-  const [theme, setTheme] = useState("dark");
 
   const username = "sureshbarach2001";
   const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
@@ -138,7 +137,6 @@ const Projects = () => {
       return 0;
     });
 
-    console.log("Filtered Repos:", updatedRepos); // Debug the filtered repos
     setFilteredRepos(updatedRepos);
   }, [repos, sortBy, filterLanguage, searchQuery]);
 
@@ -170,7 +168,7 @@ const Projects = () => {
         },
       },
       color: {
-        value: ["#ffffff", "#ffdd55", "#55ddff"],
+        value: theme === 'dark' ? ["#1A3C34", "#4A6A60"] : ["#E0F7FA", "#FF3CAC", "#00DDEB"], // Swapped particle colors
       },
       shape: {
         type: "star",
@@ -216,40 +214,38 @@ const Projects = () => {
   const customSelectStyles = {
     control: (provided) => ({
       ...provided,
-      backgroundColor: theme === "dark" ? "#1e3a8a" : "#e0f2fe",
-      color: theme === "dark" ? "white" : "black",
-      borderColor: "#2dd4bf",
+      backgroundColor: theme === "dark" ? "#F0F9FF" : "#1E1B5E", // Swapped background
+      color: theme === "dark" ? "#1A3C34" : "#E0F7FA",
+      borderColor: theme === "dark" ? "#1A3C34" : "#00DDEB",
       boxShadow: "none",
       "&:hover": {
-        borderColor: "#2dd4bf",
+        borderColor: theme === "dark" ? "#4A6A60" : "#FF3CAC",
       },
       borderRadius: "8px",
       padding: "2px",
-      zIndex: 20, // Ensure the control is above other elements
+      zIndex: 20,
     }),
     menu: (provided) => ({
       ...provided,
-      backgroundColor: theme === "dark" ? "#1e3a8a" : "#e0f2fe",
-      color: theme === "dark" ? "white" : "black",
+      backgroundColor: theme === "dark" ? "#F0F9FF" : "#1E1B5E", // Swapped background
+      color: theme === "dark" ? "#1A3C34" : "#E0F7FA",
       borderRadius: "8px",
-      zIndex: 20, // Ensure the dropdown menu is above project cards
+      zIndex: 20,
     }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected
-        ? "#2dd4bf"
-        : theme === "dark"
-        ? "#1e3a8a"
-        : "#e0f2fe",
-      color: theme === "dark" ? "white" : "black",
+        ? theme === "dark" ? "#1A3C34" : "#00DDEB"
+        : theme === "dark" ? "#F0F9FF" : "#1E1B5E",
+      color: theme === "dark" ? "#1A3C34" : "#E0F7FA",
       "&:hover": {
-        backgroundColor: "#2dd4bf",
-        color: "white",
+        backgroundColor: theme === "dark" ? "#4A6A60" : "#FF3CAC",
+        color: theme === "dark" ? "#F0F9FF" : "#0B0A2A",
       },
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: theme === "dark" ? "white" : "black",
+      color: theme === "dark" ? "#1A3C34" : "#E0F7FA",
     }),
   };
 
@@ -264,7 +260,6 @@ const Projects = () => {
   }));
 
   const resetFilters = () => {
-    console.log("Resetting filters...");
     setSortBy("stars");
     setFilterLanguage("All");
     setSearchQuery("");
@@ -274,34 +269,19 @@ const Projects = () => {
   };
 
   const handleSearchChange = (e) => {
-    const query = e.target.value;
-    console.log("Search query:", query); // Debug the search input
-    setSearchQuery(query);
+    setSearchQuery(e.target.value);
   };
 
   return (
-    <div
-      className={
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
-      }
-    >
-      <motion.button
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="fixed top-4 right-4 bg-teal-500 text-white p-3 rounded-full shadow-lg hover:bg-teal-400 transition-colors z-50" // Increased z-index to 50 and added top-16 to avoid overlap
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        {theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"}
-      </motion.button>
-
+    <div className={theme === "dark" ? "bg-[#F0F9FF] text-[#1A3C34]" : "bg-[#0B0A2A] text-[#E0F7FA]"}> {/* Swapped base colors */}
       {userData && (
         <motion.section
           id="github-profile"
           className={`py-20 ${
             theme === "dark"
-              ? "bg-gradient-to-br from-blue-900 to-teal-500"
-              : "bg-gradient-to-br from-blue-200 to-teal-200"
-          } text-white relative overflow-hidden`}
+              ? "bg-gradient-to-br from-[#CCE4F2] to-[#C2DEEC]" // Swapped to light teal
+              : "bg-gradient-to-br from-[#3B2A7D] to-[#4A3A9A]" // Swapped to dark blue
+          } relative overflow-hidden`}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -313,14 +293,14 @@ const Projects = () => {
               className="absolute top-0 left-0 w-full h-full z-0"
             />
           )}
-
-          <h2 className="text-5xl md:text-6xl font-poppins font-extrabold text-center mb-16 text-teal-200 drop-shadow-lg glowing-text">
+          <h2 className="text-5xl md:text-6xl font-poppins font-extrabold text-center mb-16">
             GitHub Profile
           </h2>
-
           <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8">
             <motion.div
-              className="w-48 h-48 rounded-full overflow-hidden border-4 border-teal-400 glowing-card"
+              className={`w-48 h-48 rounded-full overflow-hidden border-2 shadow-md ${
+                theme === 'dark' ? 'border-[#1A3C34]' : 'border-[#00DDEB]' // Adjusted border color
+              }`}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -331,51 +311,34 @@ const Projects = () => {
                 className="w-full h-full object-cover"
               />
             </motion.div>
-
             <motion.div
               className="text-center md:text-left"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h3 className="text-3xl font-poppins font-semibold text-teal-200 mb-2">
+              <h3 className="text-3xl font-poppins font-semibold mb-2">
                 {userData.name || userData.login}
               </h3>
-              <p className="text-gray-200 text-lg mb-4">
+              <p className="text-lg mb-4">
                 {userData.bio || "No bio available."}
               </p>
-              <div className="text-gray-300 text-sm space-y-2">
+              <div className="text-sm space-y-2">
                 {userData.location && (
-                  <p>
-                    <strong>Location:</strong> {userData.location}
-                  </p>
+                  <p><strong>Location:</strong> {userData.location}</p>
                 )}
-                <p>
-                  <strong>Public Repositories:</strong> {userData.public_repos}
-                </p>
-                <p>
-                  <strong>Followers:</strong> {userData.followers}
-                </p>
-                <p>
-                  <strong>Following:</strong> {userData.following}
-                </p>
-                <p>
-                  <strong>Joined GitHub:</strong>{" "}
-                  {formatDate(userData.created_at)}
-                </p>
-                {userData.blog && (
+                <p><strong>Public Repositories:</strong> {userData.public_repos}</p>
+                <p><strong>Followers:</strong> {userData.followers}</p>
+                <p><strong>Following:</strong> {userData.following}</p>
+                <p><strong>Joined GitHub:</strong> {formatDate(userData.created_at)}</p>
+                {/* {userData.blog && (
                   <p>
                     <strong>Website:</strong>{" "}
-                    <a
-                      href={userData.blog}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal-400 hover:underline"
-                    >
+                    <a href={userData.blog} target="_blank" rel="noopener noreferrer" className="hover:underline">
                       {userData.blog}
                     </a>
                   </p>
-                )}
+                )} */}
               </div>
             </motion.div>
           </div>
@@ -386,9 +349,9 @@ const Projects = () => {
         id="projects"
         className={`py-20 ${
           theme === "dark"
-            ? "bg-gradient-to-br from-teal-500 to-blue-900"
-            : "bg-gradient-to-br from-teal-200 to-blue-200"
-        } text-white relative overflow-hidden`}
+            ? "bg-gradient-to-br from-[#C2DEEC] to-[#B8D8E6]" // Swapped to light teal
+            : "bg-gradient-to-br from-[#4A3A9A] to-[#5A4ABA]" // Swapped to dark blue
+        } relative overflow-hidden`}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5 }}
@@ -400,24 +363,20 @@ const Projects = () => {
             className="absolute top-0 left-0 w-full h-full z-0"
           />
         )}
-
-        <h2 className="text-5xl md:text-6xl font-poppins font-extrabold text-center mb-16 text-teal-200 drop-shadow-lg glowing-text">
+        <h2 className="text-5xl md:text-6xl font-poppins font-extrabold text-center mb-16">
           My Projects
         </h2>
-
         <div className="container mx-auto px-6 mb-8 flex flex-col md:flex-row justify-between items-center gap-4 z-10 relative">
-          <div className="relative flex items-center gap-2 w-full md:w-1/3 z-20"> {/* Increased z-index */}
+          <div className="relative flex items-center gap-2 w-full md:w-1/3 z-20">
             <input
               type="text"
               placeholder="Search projects..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className={`w-full p-2 rounded-md border border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all duration-300 cursor-text ${
-                theme === "dark"
-                  ? "bg-blue-900 text-white"
-                  : "bg-white text-black"
+              className={`w-full p-2 rounded-md border focus:outline-none focus:ring-2 transition-all duration-300 cursor-text ${
+                theme === "dark" ? 'bg-white text-[#1A3C34] border-[#1A3C34] focus:ring-[#4A6A60]' : 'bg-[#1E1B5E] text-[#E0F7FA] border-[#00DDEB] focus:ring-[#FF3CAC]' // Swapped input styles
               }`}
-              style={{ pointerEvents: "auto", zIndex: 20 }} // Ensure input is interactable
+              style={{ pointerEvents: "auto", zIndex: 20 }}
             />
             {searchQuery && (
               <button
@@ -429,7 +388,7 @@ const Projects = () => {
             )}
           </div>
           <div className="flex items-center gap-2 z-20">
-            <label className="text-gray-200 font-roboto">Sort by:</label>
+            <label className="font-roboto">Sort by:</label>
             <Select
               options={sortOptions}
               value={sortOptions.find((option) => option.value === sortBy)}
@@ -439,14 +398,10 @@ const Projects = () => {
             />
           </div>
           <div className="flex items-center gap-2 z-20">
-            <label className="text-gray-200 font-roboto">
-              Filter by Language:
-            </label>
+            <label className="font-roboto">Filter by Language:</label>
             <Select
               options={languageOptions}
-              value={languageOptions.find(
-                (option) => option.value === filterLanguage
-              )}
+              value={languageOptions.find((option) => option.value === filterLanguage)}
               onChange={(option) => setFilterLanguage(option.value)}
               styles={customSelectStyles}
               className="w-48"
@@ -454,21 +409,22 @@ const Projects = () => {
           </div>
           <motion.button
             onClick={resetFilters}
-            className="bg-teal-500 text-white rounded-md p-2 hover:bg-teal-400 transition-colors z-20"
+            className={`rounded-md p-2 transition-colors z-20 ${
+              theme === 'dark' ? 'bg-[#1A3C34] text-[#F0F9FF] hover:bg-[#4A6A60]' : 'bg-[#00DDEB] text-[#0B0A2A] hover:bg-[#FF3CAC]' // Swapped button styles
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Reset Filters
           </motion.button>
         </div>
-
         <div className="container mx-auto px-6">
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(3)].map((_, index) => (
                 <div
                   key={index}
-                  className="bg-blue-900 bg-opacity-30 rounded-lg p-6 shadow-lg border border-teal-400 border-opacity-50 animate-pulse"
+                  className="bg-opacity-30 rounded-lg p-6 shadow-md animate-pulse"
                 >
                   <div className="h-6 bg-gray-600 rounded w-3/4 mb-4"></div>
                   <div className="h-4 bg-gray-600 rounded w-full mb-2"></div>
@@ -497,10 +453,10 @@ const Projects = () => {
                   d="M9 17v-6h6v6m-3-3v6m-9 3h18M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"
                 />
               </svg>
-              <p className="text-gray-200 text-lg mt-4">
+              <p className="text-lg mt-4">
                 {filterLanguage === "All" && !searchQuery
                   ? "No repositories found."
-                  : `No repositories found for your search or filter.`}
+                  : "No repositories found for your search or filter."}
               </p>
             </div>
           ) : (
@@ -508,65 +464,53 @@ const Projects = () => {
               {filteredRepos.map((repo, index) => (
                 <motion.div
                   key={repo.id}
-                  className={`project-card rounded-lg p-6 shadow-lg relative overflow-hidden z-10 ${
+                  className={`project-card rounded-lg p-6 shadow-md relative overflow-hidden z-10 card-border ${
                     theme === "dark"
-                      ? "bg-blue-900 bg-opacity-70 border border-teal-400 border-opacity-30 gradient-border"
-                      : "bg-white border border-teal-200 border-opacity-30 gradient-border-light"
+                      ? "bg-white bg-opacity-90" // Swapped to white for light teal background
+                      : "bg-[#1E1B5E] bg-opacity-80" // Swapped to dark blue for dark background
                   }`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{
                     scale: 1.05,
-                    rotateX: 5,
-                    rotateY: 5,
                     transition: { duration: 0.3 },
                   }}
                 >
                   {featuredRepos.includes(repo.name) && (
-                    <span className="absolute top-4 right-4 bg-yellow-500 text-blue-900 text-xs font-bold px-2 py-1 rounded-full">
+                    <span className={`absolute top-4 right-4 text-xs font-bold px-2 py-1 rounded-full ${
+                      theme === 'dark' ? 'bg-[#1A3C34] text-[#F0F9FF]' : 'bg-[#FF3CAC] text-[#0B0A2A]' // Swapped featured badge styles
+                    }`}>
                       Featured
                     </span>
                   )}
-                  <h3 className="text-xl md:text-2xl font-poppins font-semibold text-teal-200 mb-2">
+                  <h3 className="text-xl md:text-2xl font-poppins font-semibold mb-2">
                     {repo.name}
                   </h3>
-                  <p className="text-gray-200 text-sm md:text-base mb-4">
-                    {repo.description
-                      ? repo.description
-                      : "No description available."}
+                  <p className="text-sm md:text-base mb-4">
+                    {repo.description || "No description available."}
                   </p>
-                  <div className="text-gray-300 text-sm mb-4 space-y-1">
-                    <p>
-                      <strong>Language:</strong>{" "}
-                      {repo.language ? repo.language : "Not specified"}
-                    </p>
-                    <p>
-                      <strong>Stars:</strong> {repo.stargazers_count}
-                    </p>
-                    <p>
-                      <strong>Last Updated:</strong>{" "}
-                      {formatDate(repo.updated_at)}
-                    </p>
+                  <div className="text-sm mb-4 space-y-1">
+                    <p><strong>Language:</strong> {repo.language || "Not specified"}</p>
+                    <p><strong>Stars:</strong> {repo.stargazers_count}</p>
+                    <p><strong>Last Updated:</strong> {formatDate(repo.updated_at)}</p>
                     <motion.div
                       className="additional-info"
                       initial={{ opacity: 0, height: 0 }}
                       whileHover={{ opacity: 1, height: "auto" }}
                       transition={{ duration: 0.3 }}
                     >
-                      <p>
-                        <strong>Forks:</strong> {repo.forks_count}
-                      </p>
-                      <p>
-                        <strong>Open Issues:</strong> {repo.open_issues_count}
-                      </p>
+                      <p><strong>Forks:</strong> {repo.forks_count}</p>
+                      <p><strong>Open Issues:</strong> {repo.open_issues_count}</p>
                     </motion.div>
                   </div>
                   <motion.a
                     href={repo.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-teal-500 text-white font-roboto font-medium py-2 px-4 rounded-full hover:bg-teal-400 transition-colors pulsing-button"
+                    className={`inline-block font-roboto font-medium py-2 px-4 rounded-full transition-colors ${
+                      theme === 'dark' ? 'bg-[#1A3C34] text-[#F0F9FF] hover:bg-[#4A6A60]' : 'bg-[#00DDEB] text-[#0B0A2A] hover:bg-[#FF3CAC]' // Swapped button styles
+                    }`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -582,7 +526,9 @@ const Projects = () => {
       {showBackToTop && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-teal-500 text-white p-4 rounded-full shadow-lg hover:bg-teal-400 transition-colors z-20"
+          className={`fixed bottom-8 right-8 p-4 rounded-full shadow-md transition-colors z-20 ${
+            theme === 'dark' ? 'bg-[#1A3C34] text-[#F0F9FF] hover:bg-[#4A6A60]' : 'bg-[#00DDEB] text-[#0B0A2A] hover:bg-[#FF3CAC]' // Swapped button styles
+          }`}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}

@@ -5,7 +5,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import certificationsData from "../data/certifications.json";
 
-const Certifications = ({ theme, setTheme }) => {
+const Certifications = ({ theme }) => {
   const [init, setInit] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
 
@@ -18,54 +18,16 @@ const Certifications = ({ theme, setTheme }) => {
 
   const particlesOptions = {
     particles: {
-      number: {
-        value: 50,
-        density: {
-          enable: true,
-          value_area: 800,
-        },
-      },
-      color: {
-        value: ["#ffffff", "#ffdd55", "#55ddff"],
-      },
-      shape: {
-        type: "star",
-      },
-      opacity: {
-        value: 0.8,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 1,
-          opacity_min: 0.3,
-          sync: false,
-        },
-      },
-      size: {
-        value: 2,
-        random: true,
-      },
-      move: {
-        enable: true,
-        speed: 0.5,
-        direction: "none",
-        random: true,
-        out_mode: "out",
-      },
+      number: { value: 50, density: { enable: true, value_area: 800 } },
+      color: { value: theme === 'dark' ? ["#1A3C34", "#4A6A60"] : ["#E0F7FA", "#FF3CAC", "#00DDEB"] }, // Swapped particle colors
+      shape: { type: "star" },
+      opacity: { value: 0.8, random: true, anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false } },
+      size: { value: 2, random: true },
+      move: { enable: true, speed: 0.5, direction: "none", random: true, out_mode: "out" },
     },
     interactivity: {
-      events: {
-        onhover: {
-          enable: true,
-          mode: "repulse",
-        },
-      },
-      modes: {
-        repulse: {
-          distance: 100,
-          duration: 0.4,
-        },
-      },
+      events: { onhover: { enable: true, mode: "repulse" } },
+      modes: { repulse: { distance: 100, duration: 0.4 } },
     },
   };
 
@@ -77,9 +39,9 @@ const Certifications = ({ theme, setTheme }) => {
       id="certifications"
       className={`py-20 ${
         theme === "dark"
-          ? "bg-gradient-to-br from-teal-500 to-blue-900"
-          : "bg-gradient-to-br from-teal-200 to-blue-200"
-      } text-white relative overflow-hidden`}
+          ? "bg-gradient-to-br from-[#AED2E0] via-[#A4CCDA] to-[#9AC6D4] text-[#1A3C34]" // Swapped to light teal
+          : "bg-gradient-to-br from-[#6A5ADA] via-[#7A6AFA] to-[#8A7AFA] text-[#E0F7FA]" // Swapped to dark blue
+      } relative overflow-hidden`}
       initial={{ y: 50 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8 }}
@@ -91,7 +53,7 @@ const Certifications = ({ theme, setTheme }) => {
           className="absolute top-0 left-0 w-full h-full z-0"
         />
       )}
-      <h2 className="text-4xl md:text-5xl font-poppins font-extrabold text-center mb-10 text-teal-200 drop-shadow-lg glowing-text">
+      <h2 className="text-4xl md:text-5xl font-poppins font-extrabold text-center mb-10">
         Certifications
       </h2>
       <div className="container mx-auto px-6">
@@ -101,36 +63,30 @@ const Certifications = ({ theme, setTheme }) => {
               <motion.div
                 key={index}
                 onClick={() => openModal(cert)}
-                className={`certification-card p-6 shadow-lg rounded-lg relative overflow-hidden z-10 cursor-pointer ${
+                className={`certification-card p-6 shadow-md rounded-lg relative overflow-hidden z-10 cursor-pointer card-border ${
                   theme === "dark"
-                    ? "bg-blue-900 bg-opacity-70 border border-teal-400 border-opacity-30 gradient-border"
-                    : "bg-white border border-teal-200 border-opacity-30 gradient-border-light"
+                    ? "bg-white bg-opacity-90" // Swapped to white for light teal background
+                    : "bg-[#1E1B5E] bg-opacity-80" // Swapped to dark blue for dark background
                 }`}
-                whileHover={{
-                  scale: 1.05,
-                  y: -5,
-                  transition: { duration: 0.3 },
-                }}
+                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-poppins font-semibold text-teal-200">
+                <h3 className="text-xl font-poppins font-semibold">
                   {cert.title || "Untitled Certification"}
                 </h3>
-                <p className="text-gray-200 mt-2 font-roboto">
+                <p className="mt-2 font-roboto">
                   Issuer: {cert.issuer || "Unknown Issuer"}
                 </p>
-                <p className="mt-2 font-roboto text-gray-200">
+                <p className="mt-2 font-roboto">
                   Date: {cert.date || "Unknown Date"}
                 </p>
               </motion.div>
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-200">
-            No certifications data available.
-          </p>
+          <p className="text-center">No certifications data available.</p>
         )}
       </div>
       {selectedCert && (
@@ -142,21 +98,19 @@ const Certifications = ({ theme, setTheme }) => {
         >
           <motion.div
             className={`p-6 rounded-lg max-w-md w-full ${
-              theme === "dark"
-                ? "bg-blue-900 text-white"
-                : "bg-white text-black"
+              theme === "dark" ? "bg-white text-[#1A3C34]" : "bg-[#1E1B5E] text-[#E0F7FA]" // Swapped modal background
             }`}
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.8 }}
           >
-            <h3 className="text-xl font-poppins font-semibold text-teal-200">
+            <h3 className="text-xl font-poppins font-semibold">
               {selectedCert.title}
             </h3>
-            <p className="text-gray-200 mt-2 font-roboto">
+            <p className="mt-2 font-roboto">
               Issuer: {selectedCert.issuer}
             </p>
-            <p className="text-gray-200 mt-2 font-roboto">
+            <p className="mt-2 font-roboto">
               Date: {selectedCert.date}
             </p>
             {selectedCert.url && (
@@ -164,14 +118,18 @@ const Certifications = ({ theme, setTheme }) => {
                 href={selectedCert.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-teal-400 hover:underline mt-2 block font-roboto"
+                className={`hover:underline mt-2 block font-roboto ${
+                  theme === 'dark' ? 'text-[#1A3C34]' : 'text-[#00DDEB]' // Adjusted link color
+                }`}
               >
                 View Certificate
               </a>
             )}
             <motion.button
               onClick={closeModal}
-              className="mt-4 bg-teal-500 text-white rounded-md p-2 hover:bg-teal-400 transition-colors"
+              className={`mt-4 rounded-md p-2 transition-colors ${
+                theme === 'dark' ? 'bg-[#1A3C34] text-[#F0F9FF] hover:bg-[#4A6A60]' : 'bg-[#00DDEB] text-[#0B0A2A] hover:bg-[#FF3CAC]' // Swapped button styles
+              }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

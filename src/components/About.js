@@ -1,13 +1,16 @@
 // /new-portfolio/src/components/About.js
-
 import { motion } from 'framer-motion';
 import profilePic from '../assets/images/profile-pic.png';
 
-const About = () => {
+const About = ({ theme }) => {
   return (
     <motion.section
       id="about"
-      className="py-20 bg-gradient-to-br from-teal-500 to-blue-900 text-white relative overflow-hidden"
+      className={`py-20 ${
+        theme === 'dark'
+          ? 'bg-gradient-to-br from-[#E0F2FE] via-[#D6EAF8] to-[#CCE4F2] text-[#1A3C34]' // Swapped to light teal
+          : 'bg-gradient-to-br from-[#1E1B5E] via-[#2A2670] to-[#3B2A7D] text-[#E0F7FA]' // Swapped to dark blue
+      } relative overflow-hidden`}
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -16,7 +19,9 @@ const About = () => {
         <motion.img
           src={profilePic}
           alt="Profile"
-          className="w-64 h-64 rounded-full object-cover mb-6 md:mb-0 md:mr-10 shadow-lg border-4 border-cyan-300 glowing-dot"
+          className={`w-64 h-64 rounded-full object-cover mb-6 md:mb-0 md:mr-10 shadow-md border-2 ${
+            theme === 'dark' ? 'border-[#1A3C34]' : 'border-[#00DDEB]' // Adjusted border color
+          }`}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1, type: 'spring', stiffness: 80 }}
@@ -32,7 +37,7 @@ const About = () => {
             About Me
           </motion.h2>
           <motion.p
-            className="text-lg md:text-xl font-roboto leading-relaxed text-gray-200"
+            className="text-lg md:text-xl font-roboto leading-relaxed"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

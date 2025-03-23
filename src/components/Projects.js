@@ -387,7 +387,7 @@ const Projects = ({ theme }) => {
               </button>
             )}
           </div>
-          <div className="flex items-center gap-2 z-20">
+          <div className="flex items-center gap-2 z-30">
             <label className="font-roboto">Sort by:</label>
             <Select
               options={sortOptions}
@@ -397,7 +397,7 @@ const Projects = ({ theme }) => {
               className="w-48"
             />
           </div>
-          <div className="flex items-center gap-2 z-20">
+          <div className="flex items-center gap-2 z-30">
             <label className="font-roboto">Filter by Language:</label>
             <Select
               options={languageOptions}
